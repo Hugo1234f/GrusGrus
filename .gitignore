@@ -1,2 +1,22 @@
+#################################
+# Visual Studio specific files
+#################################
 **/*.sln
 **/*.vcxproj
+
+**/*.vcxproj.user
+**/*.vsidx
+**/read.lock
+
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.opendb
+
+.vs/*
+
+#################################
+# compiles/objects
+#################################
+bin/*
+
