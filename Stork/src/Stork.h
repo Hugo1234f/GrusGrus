@@ -10,6 +10,11 @@
 	#error "GrusGrus only supports Windows"
 #endif
 
+
 namespace Stork {
 	STORK_API void Print();
+	STORK_API void TestPy();
+
+	STORK_API class StorkHandle;
+	
 }
