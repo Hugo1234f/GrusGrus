@@ -30,6 +30,8 @@ project "App"
     targetdir ("bin/" .. OutputDir)
     objdir ("bin-ints/" .. OutputDir)
 
+    debugdir ("bin/" .. OutputDir)
+
     filter "system:windows"
         systemversion "latest"
         defines { "WINDOWS" }
@@ -61,6 +63,8 @@ project "Stork"
 
     targetdir ("bin/" .. OutputDir)
     objdir ("bin-ints/" .. OutputDir)
+
+    debugdir ("bin/" .. OutputDir)
 
     filter "system:windows"
         systemversion "latest"
