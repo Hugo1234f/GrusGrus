@@ -19,4 +19,5 @@
 # compiles/objects
 #################################
 bin/*
+bin-ints/*
 

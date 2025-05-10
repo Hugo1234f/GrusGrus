@@ -14,18 +14,21 @@ workspace "GrusGrus"
     OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
 project "App"
+    location "App"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"
     targetdir "bin/%{cfg.buildcfg}"
     staticruntime "off"
 
-    files { "src/App/**.h", "src/App/**.cpp" }
+    files { "App/src/**.h", "App/src/**.cpp" }
 
-    includedirs {"src/App"}
+    includedirs {"App/src", "Stork/src"}
+
+    links { "Stork" }
 
     targetdir ("bin/" .. OutputDir)
-    objdir ("bin/ints/" .. OutputDir)
+    objdir ("bin-ints/" .. OutputDir)
 
     filter "system:windows"
         systemversion "latest"
@@ -43,18 +46,21 @@ project "App"
         symbols "Off"
 
 project "Stork"
-    kind "StaticLib"
+    location "Stork"
+    kind "SharedLib"
     language "C++"
     cppdialect "C++20"
     targetdir "bin/%{cfg.buildcfg}"
     staticruntime "off"
 
-    files {"src/Stork/**.h", "src/Stork/**.cpp"}
+    files {"Stork/src/**.h", "Stork/src/**.cpp"}
 
-    includedirs { "src/Stork" }
+    includedirs { "Stork/src", "App/src" }
+
+    defines { "STORK" }
 
     targetdir ("bin/" .. OutputDir)
-    objdir ("bin/ints/" .. OutputDir)
+    objdir ("bin-ints/" .. OutputDir)
 
     filter "system:windows"
         systemversion "latest"
