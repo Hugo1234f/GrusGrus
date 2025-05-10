@@ -11,7 +11,7 @@ workspace "GrusGrus"
     filter "system:windows"
         buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
 
-    OutputDir = "%{cfg.system}-%{vfg.architecture}/%{cfg.buildcfg}"
+    OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
 project "App"
     kind "ConsoleApp"
