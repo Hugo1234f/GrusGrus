@@ -5,7 +5,7 @@
 namespace Stork {
 
 	void Print() {
-		printf("Hello Stork!");
+		std::cout << "Hello Stork!" << std::endl;
 	}
 
 	class StorkHandle {

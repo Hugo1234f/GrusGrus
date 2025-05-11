@@ -23,7 +23,7 @@ project "App"
 
     files { "App/src/**.h", "App/src/**.cpp" }
 
-    includedirs {"App/src", "Stork/src"}
+    includedirs {"App/src", "Stork/src", "Dependencies" }
 
     links { "Stork" }
 
@@ -55,9 +55,9 @@ project "Stork"
     targetdir "bin/%{cfg.buildcfg}"
     staticruntime "off"
 
-    files {"Stork/src/**.h", "Stork/src/**.cpp"}
+    files {"Stork/src/**.h", "Stork/src/**.cpp", "Dependencies/**.h" }
 
-    includedirs { "Stork/src", "App/src" }
+    includedirs { "Stork/src", "App/src", "Dependencies" }
 
     defines { "STORK" }
 

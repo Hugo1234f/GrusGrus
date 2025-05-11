@@ -1,8 +1,18 @@
 #include <Windows.h>
 #include <string>
 #include <iostream>
+#include <fstream>
+
+#include "nlohmann/json.h"
 
 namespace Stork::Grabber {
+
+	void parseJSONMetar() {
+		std::ifstream f("..\\..\\..\\Getters\\data.json");
+		nlohmann::json data = nlohmann::json::parse(f);
+
+		std::cout << "Last updated" << data["lastUpdated"] << std::endl;
+	}
 
 	bool GetLFVMetar() {
 		std::string command = "python ..\\..\\..\\Getters\\LFVMetar.py";
@@ -33,7 +43,11 @@ namespace Stork::Grabber {
 		CloseHandle(pi.hProcess);
 		CloseHandle(pi.hThread);
 
+		parseJSONMetar();
+
 		return true;
 	}
 	
+	
+
 }
