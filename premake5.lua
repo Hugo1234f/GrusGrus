@@ -12,6 +12,7 @@ workspace "GrusGrus"
         buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
 
     OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
+    SDLDir = "Dependencies/SDL3/SDL3-3.2.12"
 
 project "App"
     location "App"
@@ -23,9 +24,21 @@ project "App"
 
     files { "App/src/**.h", "App/src/**.cpp" }
 
-    includedirs {"App/src", "Stork/src", "Dependencies" }
+    includedirs {
+        "App/src", 
+        "Stork/src", 
+        "Dependencies",
+        SDLDir .. "/include" 
+    }
 
-    links { "Stork" }
+    libdirs {
+        SDLDir .. "/lib/x64/"
+    }
+
+    links { 
+        "Stork",
+        "SDL3.lib" 
+    }
 
     targetdir ("bin/" .. OutputDir)
     objdir ("bin-ints/" .. OutputDir)
@@ -57,7 +70,11 @@ project "Stork"
 
     files {"Stork/src/**.h", "Stork/src/**.cpp", "Dependencies/**.h" }
 
-    includedirs { "Stork/src", "App/src", "Dependencies" }
+    includedirs { 
+        "Stork/src", 
+        "App/src", 
+        "Dependencies" 
+    }
 
     defines { "STORK" }
 
