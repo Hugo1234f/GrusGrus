@@ -23,7 +23,9 @@ namespace Stork {
 	};
 
 	void TestPy() {
-		Grabber::GetLFVMetar();
+		Grabber::MetarDataStruct data;
+		Grabber::GetLFVMetar(data);
+		std::cout << data.LastUpdated << std::endl;
 	}
 	
 }

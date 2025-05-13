@@ -2,8 +2,9 @@
 
 #include <vector>
 
+
 namespace Stork::Grabber {
-	bool GetLFVMetar();
+	
 
 	struct MetarStationDataStruct {
 		std::string IcaoCode;
@@ -16,4 +17,6 @@ namespace Stork::Grabber {
 		std::vector<MetarStationDataStruct> stationDatas;
 
 	} typedef MetarDataStruct;
+
+	bool GetLFVMetar(MetarDataStruct& data);
 }

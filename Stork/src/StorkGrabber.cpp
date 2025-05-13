@@ -4,17 +4,18 @@
 #include <fstream>
 
 #include "nlohmann/json.h"
+#include "StorkGrabber.h"
 
 namespace Stork::Grabber {
 
-	void parseJSONMetar() {
+	void parseJSONMetar(nlohmann::json& data) {
 		std::ifstream f("..\\..\\..\\Getters\\data.json");
-		nlohmann::json data = nlohmann::json::parse(f);
+		data = nlohmann::json::parse(f);
 
 		std::cout << "Last updated" << data["lastUpdated"] << std::endl;
 	}
 
-	bool GetLFVMetar() {
+	bool GetLFVMetar(MetarDataStruct& data) {
 		std::string command = "python ..\\..\\..\\Getters\\LFVMetar.py";
 
 		STARTUPINFOA si = { sizeof(si) };
@@ -43,7 +44,10 @@ namespace Stork::Grabber {
 		CloseHandle(pi.hProcess);
 		CloseHandle(pi.hThread);
 
-		parseJSONMetar();
+		nlohmann::json Rawdata;
+		parseJSONMetar(Rawdata);
+
+		data.LastUpdated = Rawdata["lastUpdated"];
 
 		return true;
 	}
