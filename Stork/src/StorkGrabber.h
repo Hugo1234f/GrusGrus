@@ -6,6 +6,8 @@ namespace Stork::Grabber {
 	bool GetLFVMetar();
 
 	struct MetarStationDataStruct {
+		std::string IcaoCode;
+		std::string rawData;
 
 	} typedef MetarStationDataStruct;
 
