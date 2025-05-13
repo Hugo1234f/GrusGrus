@@ -32,7 +32,7 @@ project "App"
     }
 
     libdirs {
-        SDLDir .. "/lib/x64/"
+        SDLDir .. "/lib/x64"
     }
 
     links { 
