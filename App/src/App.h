@@ -54,7 +54,7 @@ ICAOtoDromeNameStruct ICAOtoDromeName[] = {
 	{"ESTL", "Ljungbyhed"},
 	{"ESUP", "Pajala"},
 	{"ESUT", "Hemavan Tärnaby"}
-}
+};
 
 
 
