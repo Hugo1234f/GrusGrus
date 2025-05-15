@@ -28,7 +28,7 @@ project "App"
         "App/src", 
         "Stork/src", 
         "Dependencies",
-        SDLDir .. "/include" 
+        SDLDir .. "/include", 
     }
 
     libdirs {
