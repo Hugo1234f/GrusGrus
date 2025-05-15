@@ -22,13 +22,25 @@ project "App"
     targetdir "bin/%{cfg.buildcfg}"
     staticruntime "off"
 
-    files { "App/src/**.h", "App/src/**.cpp" }
+    files { 
+        "App/src/**.h", "App/src/**.cpp", 
+        "Dependencies/imgui/imgui.cpp",
+        "Dependencies/imgui/imgui_draw.cpp",
+        "Dependencies/imgui/imgui_tables.cpp",
+        "Dependencies/imgui/imgui_widgets.cpp",
+        "Dependencies/imgui/imgui_demo.cpp",
+
+        "Dependencies/imgui/backends/imgui_impl_sdl3.cpp",
+        "Dependencies/imgui/backends/imgui_impl_sdlrenderer3.cpp" 
+    }
 
     includedirs {
         "App/src", 
         "Stork/src", 
         "Dependencies",
-        SDLDir .. "/include", 
+        SDLDir .. "/include",
+        "Dependencies/imgui",
+        "Dependencies/imgui/backends" 
     }
 
     libdirs {
