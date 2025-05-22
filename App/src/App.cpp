@@ -16,7 +16,7 @@ int main() {
 	Stork::TestPy();
 
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_Window* window = SDL_CreateWindow("GrusGrus App", 1920, 1080, 0);
+	SDL_Window* window = SDL_CreateWindow("GrusGrus App",1920, 1080, 0);
 	if (window == nullptr) {
 		std::cerr << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
@@ -36,7 +36,7 @@ int main() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_ViewportsEnable | ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
 	ImGui::StyleColorsDark();
 
@@ -62,8 +62,6 @@ int main() {
 		ImGui_ImplSDL3_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport());
-
 		ImGui::ShowDemoWindow(&show_demo_window);
 		
 
@@ -73,11 +71,6 @@ int main() {
 		SDL_RenderClear(renderer);
 		ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
 		SDL_RenderPresent(renderer);
-
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-		}
 
 	}
 
