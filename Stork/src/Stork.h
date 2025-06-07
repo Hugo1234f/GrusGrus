@@ -15,5 +15,11 @@ namespace Stork {
 	STORK_API void Print();
 	STORK_API void TestPy();
 
+	struct AD_Data {
+		std::string ICAO;
+		std::string data;
+	};
+
+	STORK_API AD_Data getData();
 	
 }

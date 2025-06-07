@@ -49,6 +49,16 @@ namespace Stork::Grabber {
 
 		data.LastUpdated = Rawdata["lastUpdated"];
 
+		std::vector<Stork::Grabber::MetarStationDataStruct> stationDataVec;
+		for (int i = 0; i < Rawdata["stations"].size(); i++) {
+			MetarStationDataStruct stationData;
+			stationData.IcaoCode = Rawdata["stations"][i]["ICAO"];
+			stationData.rawData = Rawdata["stations"][i]["weatherData"];
+			stationDataVec.push_back(stationData);
+		}
+		data.stationDatas = stationDataVec;
+
+
 		return true;
 	}
 	

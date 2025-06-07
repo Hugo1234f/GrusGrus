@@ -8,15 +8,21 @@
 
 #include "SDL3/SDL.h"
 
+#define WINDOW_NAME "GrusGrus"
+
+
+
 
 int main() {
 	std::cout << "Hello App!" << std::endl;
 
 	Stork::Print();
-	Stork::TestPy();
+	//Stork::TestPy();
+	//Stork::AD_Data adData = Stork::getData();
+	
 
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_Window* window = SDL_CreateWindow("GrusGrus App",1920, 1080, 0);
+	SDL_Window* window = SDL_CreateWindow("GrusGrus App",1920, 1080, SDL_WINDOW_RESIZABLE);
 	if (window == nullptr) {
 		std::cerr << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
 		SDL_Quit();
@@ -36,7 +42,7 @@ int main() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable;
 
 	ImGui::StyleColorsDark();
 
@@ -63,7 +69,10 @@ int main() {
 		ImGui::NewFrame();
 
 		ImGui::ShowDemoWindow(&show_demo_window);
-		
+
+		ImGui::Begin("AD Data");
+		ImGui::Text("Data!");
+		ImGui::End();
 
 		ImGui::Render();
 		SDL_SetRenderScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);

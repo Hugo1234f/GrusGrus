@@ -4,6 +4,8 @@
 
 namespace Stork {
 
+	Grabber::MetarDataStruct data;
+
 	void Print() {
 		std::cout << "Hello Stork!" << std::endl;
 	}
@@ -23,9 +25,16 @@ namespace Stork {
 	};
 
 	void TestPy() {
-		Grabber::MetarDataStruct data;
 		Grabber::GetLFVMetar(data);
 		std::cout << data.LastUpdated << std::endl;
+	}
+
+	AD_Data getData() {
+		AD_Data dataObj;
+		dataObj.ICAO = data.stationDatas[0].IcaoCode;
+		dataObj.ICAO = data.stationDatas[0].rawData;
+
+		return dataObj;
 	}
 	
 }
