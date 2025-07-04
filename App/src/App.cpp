@@ -5,6 +5,7 @@
 #include "imgui.h"
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlrenderer3.h"
+#include "Widgets.h"
 
 #include "SDL3/SDL.h"
 
@@ -70,9 +71,7 @@ int main() {
 
 		ImGui::ShowDemoWindow(&show_demo_window);
 
-		ImGui::Begin("AD Data");
-		ImGui::Text("Data!");
-		ImGui::End();
+		widgets::drawSidePanel();
 
 		ImGui::Render();
 		SDL_SetRenderScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
