@@ -24,7 +24,7 @@ ICAOtoDromeNameStruct ICAOtoDromeName[] = {
 	{"ESMQ", "Kalmar"},
 	{"ESMS", "Malmö"},
 	{"ESMT", "Halmstad"},
-	{"ESMK", "Växjö/Kronoberg"},
+	{"ESMX", "Växjö/Kronoberg"},
 	{"ESND", "Sveg"},
 	{"ESNG", "Gällivare"},
 	{"ESNK", "Kramfors-Sollefteå"},
