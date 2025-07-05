@@ -8,9 +8,15 @@ namespace widgets {
 	static int aerodrome_highlited_idx = -1;
 	static int aerodrome_item_selected_idx = 0;
 
+	static std::string lastUpdated = "N/A";
+
+	void setLastUpdated(std::string lastUpdatedStr) {
+		lastUpdated = lastUpdatedStr;
+	}
+
 	void drawLastUpdated() {
 		if (ImGui::CollapsingHeader("Last Updated", ImGuiTreeNodeFlags_None)) {
-			ImGui::Text("<last updated fig> TODO!");
+			ImGui::Text(lastUpdated.c_str());
 			ImGui::Button("Refresh (TODO)");
 		}
 	}
@@ -44,5 +50,10 @@ namespace widgets {
 		drawStationsHeader();
 
 		ImGui::End();
+	}
+
+
+	void drawMap() {
+
 	}
 }
