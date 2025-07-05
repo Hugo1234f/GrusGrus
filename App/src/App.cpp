@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 
 #include "Stork.h"
 #include "App.h"
@@ -70,7 +70,7 @@ int main() {
 		ImGui::NewFrame();
 
 		ImGui::ShowDemoWindow(&show_demo_window);
-
+		std::cout << "Test Ä" << std::endl;
 		widgets::drawSidePanel();
 
 		ImGui::Render();

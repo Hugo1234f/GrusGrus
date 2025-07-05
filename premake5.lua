@@ -9,7 +9,7 @@ workspace "GrusGrus"
     startproject "App"
 
     filter "system:windows"
-        buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus" }
+        buildoptions { "/EHsc", "/Zc:preprocessor", "/Zc:__cplusplus", "/utf-8" }
 
     OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
     SDLDir = "Dependencies/SDL3/SDL3-3.2.12"
