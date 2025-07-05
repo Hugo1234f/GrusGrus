@@ -67,6 +67,8 @@ int main() {
 	std::cout << "Hello App!" << std::endl;
 
 	Stork::Print();
+	widgets::Widgets widgets;
+	widgets.setMetarData(Stork::getData());
 	//Stork::TestPy();
 	//Stork::AD_Data adData = Stork::getData();
 	
@@ -112,15 +114,13 @@ int main() {
 			}
 		}
 
-		
-
 		ImGui_ImplSDLRenderer3_NewFrame();
 		ImGui_ImplSDL3_NewFrame();
 		ImGui::NewFrame();
 
+
 		ImGui::ShowDemoWindow(&show_demo_window);
-		std::cout << "Test Ä" << std::endl;
-		widgets::drawSidePanel();
+		widgets.drawSidePanel();
 
 		ImGui::Render();
 		SDL_SetRenderScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
@@ -129,6 +129,11 @@ int main() {
 		ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
 		SDL_RenderPresent(renderer);
 
+
+		if (widgets.getRefresh()) {
+			widgets.setMetarData(Stork::getData());
+			widgets.setRefresh(false);
+		}
 	}
 
 	ImGui_ImplSDLRenderer3_Shutdown();
