@@ -1,5 +1,7 @@
 #pragma once
 
+#include "StorkGrabber.h"
+
 #ifdef WINDOWS
 	#ifdef STORK
 		#define STORK_API __declspec(dllexport)
@@ -20,6 +22,8 @@ namespace Stork {
 		std::string data;
 	};
 
-	STORK_API AD_Data getData();
+	STORK_API Grabber::MetarDataStruct getData();
+	STORK_API std::string getLastUpdated();
+	STORK_API void grabMetar();
 	
 }

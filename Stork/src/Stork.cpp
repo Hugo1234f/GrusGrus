@@ -29,12 +29,18 @@ namespace Stork {
 		std::cout << data.LastUpdated << std::endl;
 	}
 
-	AD_Data getData() {
-		AD_Data dataObj;
-		dataObj.ICAO = data.stationDatas[0].IcaoCode;
-		dataObj.ICAO = data.stationDatas[0].rawData;
+	void grabMetar() {
+		Grabber::GetLFVMetar(data);
+	}
 
-		return dataObj;
+	Grabber::MetarDataStruct getData() {
+		Grabber::MetarDataStruct data1;
+		Grabber::GetLFVMetar(data1);
+		return data1;
+	}
+
+	std::string getLastUpdated() {
+		return data.LastUpdated;
 	}
 	
 }
