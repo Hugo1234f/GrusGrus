@@ -58,7 +58,6 @@ namespace Stork::Grabber {
 		}
 		data.stationDatas = stationDataVec;
 
-
 		return true;
 	}
 	
