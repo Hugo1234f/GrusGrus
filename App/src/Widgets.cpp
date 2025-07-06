@@ -9,10 +9,7 @@ namespace widgets {
 		int aerodrome_item_selected_idx = 0;
 		std::string lastUpdated = "N/A";
 		static bool updateClicked = false;
-
 		static bool refresh = false;
-
-
 
 		Widgets::Widgets() {
 

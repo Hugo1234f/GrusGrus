@@ -8,19 +8,33 @@ namespace widgets {
 	
 	class Widgets 
 	{
-
 	public:
 		Widgets();
 		
+		//---------------------------------------
+		// Data handling
+		//---------------------------------------
+
 		void setMetarData(Stork::Grabber::MetarDataStruct data);
-	
+
+		//---------------------------------------
+		// Side Panel
+		//---------------------------------------
+
+		void drawSidePanel();
+		
 		void drawLastUpdated();
 		void drawStationsHeader();
 
-		//Draws the side panel
-		void drawSidePanel();
-
+		//---------------------------------------
+		// Map
+		//---------------------------------------
+		
 		void drawMap();
+
+		//---------------------------------------
+		// Update indicator controls
+		//---------------------------------------
 
 		bool getRefresh();
 		void setRefresh(bool state);
