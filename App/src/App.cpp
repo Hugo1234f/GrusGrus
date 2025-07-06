@@ -9,8 +9,9 @@
 
 #include "SDL3/SDL.h"
 
-#define WINDOW_NAME "GrusGrus"
+#include "Renderer.h"
 
+#define WINDOW_NAME "GrusGrus"
 
 ICAOtoDromeNameStruct ICAOtoDromeName[] {
 		{"ESCF", "Linköping/Malmen"},
@@ -66,83 +67,68 @@ const int ICAOtoDromeNameCount = sizeof(ICAOtoDromeName) / sizeof(ICAOtoDromeNam
 int main() {
 	std::cout << "Hello App!" << std::endl;
 
+	
+	
+	//------------------------------
+	//Set up window
+	//------------------------------
+
+	SDL_Window*		window;
+	SDL_Renderer*	renderer;
+	Renderer::SDL_INIT(&window, &renderer);
+
+	//------------------------------
+	// Set up ImGui
+	//------------------------------
+
+	ImGuiIO	io;
+	Renderer::ImGui_SDL3_Init(&io, &window, &renderer);
+
+	//------------------------------
+	// Rendering preferences
+	//------------------------------
+
+	ImVec4		clear_color			= ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+	SDL_Event	e;
+	bool		quit				= false;
+	bool		show_demo_window;
+
+	//------------------------------
+	// Class Init
+	//------------------------------
 	Stork::Print();
 	widgets::Widgets widgets;
 	widgets.setMetarData(Stork::getData());
-	//Stork::TestPy();
-	//Stork::AD_Data adData = Stork::getData();
-	
 
-	SDL_Init(SDL_INIT_VIDEO);
-	SDL_Window* window = SDL_CreateWindow("GrusGrus App",1920, 1080, SDL_WINDOW_RESIZABLE);
-	if (window == nullptr) {
-		std::cerr << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return 1;
-	}
+	//------------------------------
+	// Rendering loop
+	//------------------------------
 
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
-	if (renderer == nullptr) {
-		std::cerr << "SDL_CreateRenderer error: " << SDL_GetError() << std::endl;
-		SDL_DestroyWindow(window);
-		SDL_Quit();
-		return 1;
-	}
-
-	std::cout << IMGUI_VERSION << std::endl;
-
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_DockingEnable;
-
-	ImGui::StyleColorsDark();
-
-	ImGui_ImplSDL3_InitForSDLRenderer(window, renderer);
-	ImGui_ImplSDLRenderer3_Init(renderer);
-
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	bool show_demo_window;
-
-	SDL_Event e;
-	bool quit = false;
 	while (!quit) {
-		while (SDL_PollEvent(&e)) {
-			ImGui_ImplSDL3_ProcessEvent(&e);
-			if (e.type == SDL_EVENT_QUIT) {
-				quit = true;
-			}
-		}
+		//Poll for events
+		Renderer::ImGui_SDL3_PollEvent(&e, &quit);
 
-		ImGui_ImplSDLRenderer3_NewFrame();
-		ImGui_ImplSDL3_NewFrame();
-		ImGui::NewFrame();
+		Renderer::ImGui_SDL3_NewFrame();
 
+		ImGui::ShowDemoWindow(&show_demo_window);	//ImGui demo window
+		widgets.drawSidePanel();					//Side panel
 
-		ImGui::ShowDemoWindow(&show_demo_window);
-		widgets.drawSidePanel();
-
+		//Issue Draw call
 		ImGui::Render();
-		SDL_SetRenderScale(renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
-		SDL_SetRenderDrawColorFloat(renderer, clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-		SDL_RenderClear(renderer);
-		ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), renderer);
-		SDL_RenderPresent(renderer);
+		Renderer::SDL_Render(&renderer, &io, &clear_color);
 
 
+		//Check if refresh button is pressed
 		if (widgets.getRefresh()) {
 			widgets.setMetarData(Stork::getData());
 			widgets.setRefresh(false);
 		}
 	}
 
-	ImGui_ImplSDLRenderer3_Shutdown();
-	ImGui_ImplSDL3_Shutdown();
-	ImGui::DestroyContext();
-
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	//------------------------------
+	// Shutdown
+	//------------------------------
+	Renderer::ImGui_SDL3_ShutDown(&window, &renderer);
 
 	return 0;
 }
