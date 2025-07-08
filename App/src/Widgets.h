@@ -30,7 +30,7 @@ namespace widgets {
 		// Map
 		//---------------------------------------
 		
-		void drawMap();
+		void drawMap(void* my_texture, int my_image_width, int my_image_height);
 
 		//---------------------------------------
 		// Update indicator controls

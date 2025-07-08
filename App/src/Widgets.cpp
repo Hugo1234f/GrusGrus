@@ -64,8 +64,10 @@ namespace widgets {
 			ImGui::End();
 		}
 
-		void Widgets::drawMap() {
-
+		void Widgets::drawMap(void* my_texture, int my_image_width, int my_image_height) {
+			ImGui::Begin("Map");
+			ImGui::Image((ImTextureID)(intptr_t)my_texture, ImVec2((float)my_image_width, (float)my_image_height));
+			ImGui::End();
 		}
 
 	

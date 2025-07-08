@@ -77,6 +77,11 @@ int main() {
 	SDL_Renderer*	renderer;
 	Renderer::SDL_INIT(&window, &renderer);
 
+	SDL_Texture* my_texture;
+	int my_image_width, my_image_height;
+	bool ret = Renderer::SDL3_LoadTextureFromFile("C:\\code\\GrusGrus\\Dependencies\\Sweden.png", renderer, &my_texture, &my_image_width, &my_image_height);
+	IM_ASSERT(ret);
+
 	//------------------------------
 	// Set up ImGui
 	//------------------------------
@@ -112,11 +117,18 @@ int main() {
 
 		ImGui::ShowDemoWindow(&show_demo_window);	//ImGui demo window
 		widgets.drawSidePanel();					//Side panel
-
+		widgets.drawMap(my_texture, my_image_width, my_image_height);
+		
+		//ImGui::Begin("SDL_Renderer Texture Test");
+		//ImGui::Text("size = %d x %d", my_image_width, my_image_height);
+		//ImGui::Image((ImTextureID)(intptr_t)my_texture, ImVec2((float)my_image_width, (float)my_image_height));
+		//ImGui::End();
+		
 		//Issue Draw call
 		ImGui::Render();
 		Renderer::SDL_Render(&renderer, &io, &clear_color);
 
+		
 
 		//Check if refresh button is pressed
 		if (widgets.getRefresh()) {
