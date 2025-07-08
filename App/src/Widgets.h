@@ -31,6 +31,7 @@ namespace widgets {
 		//---------------------------------------
 		
 		void drawMap(void* my_texture, int my_image_width, int my_image_height);
+		void drawMap(void* my_texture);
 
 		//---------------------------------------
 		// Update indicator controls
@@ -38,5 +39,6 @@ namespace widgets {
 
 		bool getRefresh();
 		void setRefresh(bool state);
+		void setMapSize(int width, int height);
 	};
 }

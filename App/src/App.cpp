@@ -104,6 +104,7 @@ int main() {
 	Stork::Print();
 	widgets::Widgets widgets;
 	widgets.setMetarData(Stork::getData());
+	widgets.setMapSize(my_image_width, my_image_height);
 
 	//------------------------------
 	// Rendering loop
@@ -115,14 +116,9 @@ int main() {
 
 		Renderer::ImGui_SDL3_NewFrame();
 
-		ImGui::ShowDemoWindow(&show_demo_window);	//ImGui demo window
-		widgets.drawSidePanel();					//Side panel
-		widgets.drawMap(my_texture, my_image_width, my_image_height);
-		
-		//ImGui::Begin("SDL_Renderer Texture Test");
-		//ImGui::Text("size = %d x %d", my_image_width, my_image_height);
-		//ImGui::Image((ImTextureID)(intptr_t)my_texture, ImVec2((float)my_image_width, (float)my_image_height));
-		//ImGui::End();
+		ImGui::ShowDemoWindow(&show_demo_window);						//ImGui demo window
+		widgets.drawSidePanel();										//Side panel
+		widgets.drawMap(my_texture);	//Map panel
 		
 		//Issue Draw call
 		ImGui::Render();

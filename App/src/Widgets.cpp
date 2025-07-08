@@ -7,6 +7,8 @@ namespace widgets {
 		Stork::Grabber::MetarDataStruct metarData;
 		int aerodrome_highlited_idx = -1;
 		int aerodrome_item_selected_idx = 0;
+		int mapWidth = -1;
+		int mapHeight = -1;
 		std::string lastUpdated = "N/A";
 		static bool updateClicked = false;
 		static bool refresh = false;
@@ -69,6 +71,13 @@ namespace widgets {
 			ImGui::Image((ImTextureID)(intptr_t)my_texture, ImVec2((float)my_image_width, (float)my_image_height));
 			ImGui::End();
 		}
+		void Widgets::drawMap(void* my_texture) {
+			if (mapWidth <= 0 || mapHeight <= 0) { return; }
+
+			ImGui::Begin("Map");
+			ImGui::Image((ImTextureID)(intptr_t)my_texture, ImVec2((float)mapWidth, (float)mapHeight));
+			ImGui::End();
+		}
 
 	
 		bool Widgets::getRefresh() {
@@ -77,6 +86,10 @@ namespace widgets {
 		void Widgets::setRefresh(bool state) {
 			refresh = state;
 			updateClicked = refresh;
+		}
+		void Widgets::setMapSize(int width, int height) {
+			mapWidth = width;
+			mapHeight = height;
 		}
 
 }
