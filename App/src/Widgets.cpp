@@ -54,6 +54,7 @@ namespace widgets {
 				ImGui::EndListBox();
 
 				ImGui::SeparatorText("VViS");
+				ImGui::SeparatorText("Custom Points");
 			}
 		}
 
