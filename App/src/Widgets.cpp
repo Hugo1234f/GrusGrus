@@ -54,6 +54,8 @@ namespace widgets {
 					if (ImGui::Selectable(ItemName.c_str(), is_selected, flags)) {
 						aerodrome_item_selected_idx = i;
 
+						
+
 						if (currentWeather != ICAOtoDromeName[i].ICAOCode) {
 							requestedWeather = ICAOtoDromeName[i].ICAOCode;
 						}

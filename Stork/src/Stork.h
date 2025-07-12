@@ -29,8 +29,16 @@ namespace Stork {
 
 	//---------------------------------------
 
-	STORK_API Grabber::MetarDataStruct getData();
+	//STORK_API Grabber::MetarDataStruct getData();
 	STORK_API std::string getLastUpdated();
-	STORK_API void grabMetar();
+
+	class STORK_API Stork {
+		Grabber::MetarDataStruct data;
+					  
+	public:
+		void grabMetar();
+		Grabber::MetarDataStruct getData();
+		Stork();
+	};
 	
 }

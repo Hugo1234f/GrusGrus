@@ -29,7 +29,7 @@ namespace Stork {
 		std::cout << data.LastUpdated << std::endl;
 	}
 
-	void grabMetar() {
+	void Stork::grabMetar() {
 		Grabber::GetLFVMetar(data);
 	}
 
@@ -41,6 +41,15 @@ namespace Stork {
 
 	std::string getLastUpdated() {
 		return data.LastUpdated;
+	}
+
+	Grabber::MetarDataStruct Stork::getData() {
+		return data;
+	}
+
+	Stork::Stork() {
+		Print();
+		grabMetar();
 	}
 	
 }

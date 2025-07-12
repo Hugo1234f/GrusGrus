@@ -101,9 +101,9 @@ int main() {
 	//------------------------------
 	// Class Init
 	//------------------------------
-	Stork::Print();
+	Stork::Stork stork;
 	widgets::Widgets widgets;
-	widgets.setMetarData(Stork::getData());
+	widgets.setMetarData(stork.getData());
 	widgets.setMapSize(my_image_width, my_image_height);
 
 	//------------------------------
@@ -129,15 +129,17 @@ int main() {
 
 		//Check if refresh button is pressed
 		if (widgets.getRefresh()) {
-			widgets.setMetarData(Stork::getData());
+			widgets.setMetarData(stork.getData());
 			widgets.setRefresh(false);
 		}
-		//Update weather panel
+		//Update weather pane
 		if (widgets.getRequestedWeather() != "") {
+			
 			bool was_set = false;
 			std::string requested = widgets.getRequestedWeather();
 			
-			Stork::Grabber::MetarDataStruct data = Stork::getData();
+			Stork::Grabber::MetarDataStruct data = stork.getData();
+			std::cout << "test" << std::endl;
 			for (int i = 0; i < data.stationDatas.size(); i++) {
 				
 				if (data.stationDatas[i].IcaoCode == requested) {
