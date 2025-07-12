@@ -101,7 +101,7 @@ int main() {
 	//------------------------------
 	// Class Init
 	//------------------------------
-	Stork::Stork stork;
+	Stork::StorkHandle stork;
 	widgets::Widgets widgets;
 	widgets.setMetarData(stork.getData());
 	widgets.setMapSize(my_image_width, my_image_height);
@@ -139,7 +139,6 @@ int main() {
 			std::string requested = widgets.getRequestedWeather();
 			
 			Stork::Grabber::MetarDataStruct data = stork.getData();
-			std::cout << "test" << std::endl;
 			for (int i = 0; i < data.stationDatas.size(); i++) {
 				
 				if (data.stationDatas[i].IcaoCode == requested) {

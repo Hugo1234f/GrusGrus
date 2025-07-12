@@ -15,30 +15,18 @@
 
 namespace Stork {
 
-	struct AD_Data {
-		std::string ICAO;
-		std::string data;
-	};
-
-	//---------------------------------------
-	// Diagnostics & Logging
-	//---------------------------------------
-
-	STORK_API void Print();
-	STORK_API void TestPy();
-
-	//---------------------------------------
-
-	//STORK_API Grabber::MetarDataStruct getData();
-	STORK_API std::string getLastUpdated();
-
-	class STORK_API Stork {
+	class STORK_API StorkHandle {
 		Grabber::MetarDataStruct data;
 					  
 	public:
+		StorkHandle();
+
 		void grabMetar();
+		void Print();
+
+		std::string getLastUpdated();
 		Grabber::MetarDataStruct getData();
-		Stork();
+		
 	};
 	
 }

@@ -88,7 +88,16 @@ namespace widgets {
 
 			ImGui::Begin("Map");
 			ImGui::Image((ImTextureID)(intptr_t)my_texture, ImVec2((float)mapWidth, (float)mapHeight));
+			
+			if (currentWeather.size() >= 4) {
+				ImDrawList* draw_list = ImGui::GetWindowDrawList();
+				ImVec2 map_origin = ImGui::GetItemRectMin();
+				draw_list->AddCircleFilled(map_origin, 10.0f, IM_COL32(255, 0, 0, 255));
+			}
+			
 			ImGui::End();
+		
+			
 		}
 
 
@@ -96,6 +105,8 @@ namespace widgets {
 			ImGui::Begin("Weather");
 			ImGui::Text(weatherText.c_str());
 			ImGui::End();
+
+			
 		}
 
 	
