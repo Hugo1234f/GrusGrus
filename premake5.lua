@@ -22,16 +22,17 @@ project "App"
     targetdir "bin/%{cfg.buildcfg}"
     staticruntime "off"
 
-    
-
     files { 
-        "App/src/**.h", "App/src/**.cpp", 
+        "App/src/**.h", "App/src/**.cpp",
+        
+        -- ImGUI
         "Dependencies/imgui/imgui.cpp",
         "Dependencies/imgui/imgui_draw.cpp",
         "Dependencies/imgui/imgui_tables.cpp",
         "Dependencies/imgui/imgui_widgets.cpp",
         "Dependencies/imgui/imgui_demo.cpp",
 
+        -- SDL3
         "Dependencies/imgui/backends/imgui_impl_sdl3.cpp",
         "Dependencies/imgui/backends/imgui_impl_sdlrenderer3.cpp" 
     }
@@ -56,13 +57,13 @@ project "App"
 
     targetdir ("bin/" .. OutputDir)
     objdir ("bin-ints/" .. OutputDir)
-
     debugdir ("bin/" .. OutputDir)
 
+    -- Post Build Steps
     local SDL3_DLL_SRC = path.join(SDLDir, "lib", "SDL3.dll")
     local SDL3_DLL_DST = path.join("bin", OutputDir, "SDL3.dll")
     postbuildcommands {
-        '{COPYFILE} "' .. SDL3_DLL_SRC .. '" "' .. SDL3_DLL_DST '"' 
+        '{COPYFILE} "' .. SDL3_DLL_SRC .. '" "' .. SDL3_DLL_DST '"' -- Move SDL3.dll to executable
     }
 
     filter "system:windows"
