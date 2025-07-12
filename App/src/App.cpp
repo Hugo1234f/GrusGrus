@@ -119,6 +119,7 @@ int main() {
 		ImGui::ShowDemoWindow(&show_demo_window);						//ImGui demo window
 		widgets.drawSidePanel();										//Side panel
 		widgets.drawMap(my_texture);	//Map panel
+		widgets.drawWeather();
 		
 		//Issue Draw call
 		ImGui::Render();
@@ -130,6 +131,22 @@ int main() {
 		if (widgets.getRefresh()) {
 			widgets.setMetarData(Stork::getData());
 			widgets.setRefresh(false);
+		}
+		//Update weather panel
+		if (widgets.getRequestedWeather() != "") {
+			bool was_set = false;
+			std::string requested = widgets.getRequestedWeather();
+			
+			Stork::Grabber::MetarDataStruct data = Stork::getData();
+			for (int i = 0; i < data.stationDatas.size(); i++) {
+				
+				if (data.stationDatas[i].IcaoCode == requested) {
+					widgets.setWeatherText(data.stationDatas[i].rawData);
+					was_set = true;
+				}
+			}
+
+			if (!was_set) { widgets.setWeatherText("N/A"); }
 		}
 	}
 

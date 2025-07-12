@@ -1,6 +1,7 @@
 #include "Widgets.h"
 #include "Stork.h"
 #include "StorkGrabber.h"
+#include <iostream>
 
 namespace widgets {
 
@@ -10,6 +11,9 @@ namespace widgets {
 		int mapWidth = -1;
 		int mapHeight = -1;
 		std::string lastUpdated = "N/A";
+		std::string weatherText = "N/A";
+		std::string requestedWeather = "";
+		std::string currentWeather = "a";
 		static bool updateClicked = false;
 		static bool refresh = false;
 
@@ -49,6 +53,11 @@ namespace widgets {
 
 					if (ImGui::Selectable(ItemName.c_str(), is_selected, flags)) {
 						aerodrome_item_selected_idx = i;
+
+						if (currentWeather != ICAOtoDromeName[i].ICAOCode) {
+							requestedWeather = ICAOtoDromeName[i].ICAOCode;
+						}
+						
 					}
 				}
 				ImGui::EndListBox();
@@ -80,6 +89,13 @@ namespace widgets {
 			ImGui::End();
 		}
 
+
+		void Widgets::drawWeather() {
+			ImGui::Begin("Weather");
+			ImGui::Text(weatherText.c_str());
+			ImGui::End();
+		}
+
 	
 		bool Widgets::getRefresh() {
 			return refresh;
@@ -91,6 +107,15 @@ namespace widgets {
 		void Widgets::setMapSize(int width, int height) {
 			mapWidth = width;
 			mapHeight = height;
+		}
+		std::string Widgets::getRequestedWeather() {
+			return requestedWeather;
+		}
+		void Widgets::setWeatherText(std::string text) {
+			weatherText = text;
+			currentWeather = requestedWeather;
+			requestedWeather = "";
+			
 		}
 
 }

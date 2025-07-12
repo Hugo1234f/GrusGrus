@@ -17,8 +17,7 @@ GrusGrus currently only supports SDL3 for rendering.
 
 Currently the following tasks are being worked on:
 
-1. Setting up the weather data widget
-2. LAT/LONG to x/y conversion
-3. Aerodrome highlighting
-4. OpenGL support
-5. Transition the webscraping from python to C++ 
+1. LAT/LONG to x/y conversion
+2. Aerodrome highlighting
+3. OpenGL support
+4. Transition the webscraping from python to C++ 

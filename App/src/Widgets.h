@@ -34,11 +34,22 @@ namespace widgets {
 		void drawMap(void* my_texture);
 
 		//---------------------------------------
+		// Weather Panel
+		//---------------------------------------
+
+		void drawWeather();
+
+		//---------------------------------------
 		// Update indicator controls
 		//---------------------------------------
 
 		bool getRefresh();
 		void setRefresh(bool state);
 		void setMapSize(int width, int height);
+		void setWeatherText(std::string text);
+		std::string getRequestedWeather();
+	
+		
 	};
+
 }
