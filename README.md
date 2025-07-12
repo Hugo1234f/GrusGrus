@@ -22,3 +22,4 @@ Currently the following tasks are being worked on:
 3. Aerodrome highlighting
 4. OpenGL support
 5. Make map path relative
+6. Transition the webscraping from python to C++ 
