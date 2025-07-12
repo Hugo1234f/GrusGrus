@@ -79,7 +79,7 @@ int main() {
 
 	SDL_Texture* my_texture;
 	int my_image_width, my_image_height;
-	bool ret = Renderer::SDL3_LoadTextureFromFile("D:\\code\\GrusGrus\\Dependencies\\Sweden.png", renderer, &my_texture, &my_image_width, &my_image_height);
+	bool ret = Renderer::SDL3_LoadTextureFromFile("..\\..\\..\\Dependencies\\Sweden.png", renderer, &my_texture, &my_image_width, &my_image_height);
 	IM_ASSERT(ret);
 
 	//------------------------------
