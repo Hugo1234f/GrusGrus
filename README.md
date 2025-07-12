@@ -21,5 +21,4 @@ Currently the following tasks are being worked on:
 2. LAT/LONG to x/y conversion
 3. Aerodrome highlighting
 4. OpenGL support
-5. Postbuild, move SDL3.dll
-6. Make map path relative
+5. Make map path relative

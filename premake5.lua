@@ -22,6 +22,8 @@ project "App"
     targetdir "bin/%{cfg.buildcfg}"
     staticruntime "off"
 
+    
+
     files { 
         "App/src/**.h", "App/src/**.cpp", 
         "Dependencies/imgui/imgui.cpp",
@@ -56,6 +58,12 @@ project "App"
     objdir ("bin-ints/" .. OutputDir)
 
     debugdir ("bin/" .. OutputDir)
+
+    local SDL3_DLL_SRC = path.join(SDLDir, "lib", "SDL3.dll")
+    local SDL3_DLL_DST = path.join("bin", OutputDir, "SDL3.dll")
+    postbuildcommands {
+        '{COPYFILE} "' .. SDL3_DLL_SRC .. '" "' .. SDL3_DLL_DST '"' 
+    }
 
     filter "system:windows"
         systemversion "latest"
